@@ -40,7 +40,10 @@ Konfiguration
 
 ### Settings
 
-`Hier ist lediglich zu aktivieren, welche Daten in welcher Form übermittelt werden sollen´
+Hier ist lediglich zu aktivieren, welche Daten in welcher Form übermittelt werden sollen. Lt. Entwickler sind Datenfelder unnötig; wird gefixt (Stand Januar 2019)
+
+![Logo](media/konfig_fehler.png)
+
 <p>Weitere Informationen im Forum <a href="https://forum.iobroker.net/viewtopic.php?f=20&t=3344&hilit=fritzbox" title="Titel">
 in diesem Thread</a></p>
 
