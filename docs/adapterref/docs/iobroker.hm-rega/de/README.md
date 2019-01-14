@@ -88,7 +88,7 @@ In diesem Bereich werden die grundlegenden Einstellungen vorgenommen.
 Im Pulldown-Menü kann die IP-Adresse der CCU ausgewählt werden; auch der
 Wiederverbindungsintervall (Standard 30 sec) kann vom User angepasst werden.
 
-![](media/ce181cdbb3b8979e1233b57a4588cf1d.png) ':size=50%'<span style="color:grey">  
+![](media/ce181cdbb3b8979e1233b57a4588cf1d.png) ':size=10%'<span style="color:grey">  
 *Zuordnung der RPC-Instanzen*</span>
 
 Danach werden die erforderlichen Dienste aktiviert und mit der passenden
