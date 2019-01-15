@@ -1,185 +1,255 @@
-![Logo](media/tr-064.png)
-# ioBroker.tr-064
+![Logo](./media/logo.png)
+TR-064
+========================================
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.tr-064.svg)](https://www.npmjs.com/package/iobroker.tr-064)
-[![Tests](http://img.shields.io/travis/soef/ioBroker.tr-064/master.svg)](https://travis-ci.org/soef/ioBroker.tr-064)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/soef/iobroker.tr-064/blob/master/LICENSE)
+| Stand der Doku | 17.01.2019                                  |
+|----------------|---------------------------------------------|
+| Entwickler     | soef, bluefox                               |
+| Kategorie      | Hardware                                    |
+| Keywords       | Fritzbox, AVM, Telefon, Anruf, Anwesenheit, |
+| Abhängigkeiten | Freigeschalteter FB-Callmonitor             |
+| Lizenz         | MIT                                         |
 
-<!--[![Build status](https://ci.appveyor.com/api/projects/status/485gflwiw7p54x7q?svg=true)](https://ci.appveyor.com/project/soef/iobroker-tr-064)-->
+AVM Fritz!Box®
+--------------
 
-***This adapter requires at least Node 4.x***
+Bei der Fritz!Box (Eigenschreibweise des Herstellers AVM) handelt es sich um die
+am weitesten verbreiteten Router auf dem Markt.
 
-### Info
-This adapter reads main information from AVM Fritz!Box, like call list or number of messages on answering machine.
-Based on this [AVM documentations](https://avm.de/service/schnittstellen/)
+Es gibt mittlerweile Modelle für alle gängigen Internet-Anschlussarten: DSL-,
+Kabel-, Mobilfunk- und Glasfaserzugänge.
 
-### Simple states and functions
-- turn on/off wifi for 2.4GHz and 5GHz,
-- turn on/off guest wifi,
-- reboot Fritz!Box,
-- start WPS process,
-- reconnect Internet
-- external ip address
+Adapter Fritzbox
+----------------
 
-### ring (dial a number)
-- When using an internel number (like **610) the ring state will let ring that internal phone.
-e.g.: **610[,timeout]
-- When using an external number, the ring state will connect you to the external number.
- The FritzBox will call the external number and your default phone will ring, when the called phone is picked up.
- The default phone can be configured in the FritsBox under:
- Telefonie/Anrufe/[Tab]Wahlhilfe/Wählhilfe verwenden
+Dieser Adapter liest Information aus der AVM Fritz!Box (kurz: FB) aus
+(Schnittstellen basieren auf der [Dokumentation von AVM](https://avm.de/service/schnittstellen/)).
 
-### toPauseState
-- Values: ring, connect, end
-- Can be used to pause a videoplayer on an incomming call (ring), or on pick up the phone (connect).
-- Resume can be done on the end value.
+Über diesen Adapter können verschiedene Einstellungen an der FB vorgenommen
+werde, wie z.B.
 
-### Presence
-You can configure a list of devices to listen to.
-Can be triggert by mDNS. When using MDNS, no polling ist needet and it is faster
+-   An-/Ausschalten WiFi (2,4 GHz und 5 GHz)
 
-### AB - Anrufbeantworter (answering machine)
-Can be switch on/off.
-The state cbIndex can be set, to address # of the answerig machine.
+-   An-/Ausschalten Gästezugang
 
-### Call monitor
-The callmonitor will create realtime states for every inbound and outbound call.
-If the phonebook is enabled (default), numbers will be resolved to Names
-There ist also a state indicating a ringing phone.
+-   Reboot FB
+
+Außerdem stellt dieser Adapter Informationen wie z.B.
+
+-   Telefonbuch (Namensauflösung)
+
+-   Geräteliste aller angemeldeten Geräte mit ihrem aktuellen Status
+
+usw. zur Verfügung
+
+Voraussetzungen vor Installation
+--------------------------------
+
+Der Datenaustausch erfolgt über den in der FB integrierten *Callmonitor*. Um
+diesen zu aktivieren, ruft man von einem angeschlossenen Telefon folgende Nummer
+an:
+
+> \#96\*5\* – Callmonitor einschalten
+
+> \#96\*4\* – Callmonitor ausschalten
+
+Als nächstes sollten in der FB unter "Heimnetz-Netzwerk-Netzwerkeinstellungen-Heimnetzfreigaben" beide Optionen aktiviert werden.
+
+![Fritzbox-Konfiguration](./media/netzwerk.png)<span>  
+*Netzwerkeinstellung FB*</span>
+
+Zur Nutzung weiterer Komfortfunktionen wird folgende Vorgehensweise empfohlen:
+
+-   Anlage eines neuen Nutzers in der FB
+
+    -   Administrator-Berechtigung (s. Grafik, Berechtigung Pkt. 1)
+
+    -   Berechtigung Sprach-, Faxnachrichten … (s. Grafik, Berechtigung Pkt. 2)
+
+    -   Smart Home (bei Bedarf, s. Grafik, Berechtigung Pkt. 3)
+
+![Fritzbox-Konfiguration](./media/fritz_konfig.png)<span style="color:red">  
+*Einstellungsseite FB*</span>
+
+Konfiguration
+-------------
+
+![Optionen](./media/options.png)<span style="color:grey">  
+*Konfiguration (öffnet sich nach erfolgreicher Installation einer Instanz automatisch)*</span>
+
+### Options
+
+**Fritzbox**
+
+Zugangsdaten FB
+
+**Options**
+
+Aktivierung von
+
+-   Polling (Intervall sollte nicht zu kurz eingestellt sein)
+
+-   Anrufmonitor (zur Darstellung von Gesprächen (ankommend, gehend, verpasst
+    usw.)
+
+-   Telefonbuch (Namensanzeige statt Telefonnummer)
+
+-   Geräteliste (gemäß Auswahl unter Geräte)
+
+-   Anwesenheitsprüfung
+
+-   Verwendung MDNS (Automatismus; reduziert Datenlast im Netz)
+
+-   Rufweiterleitungsoption
+
+### Geräte
+
+Hier werden die Geräte ausgewählt, die in der Geräteliste aufgeführt werden
+sollen. Hier kann entweder über das „+“-Symbol ein Gerät mit IP
+und/oder MAC-Adresse eingegeben werden.
+
+![Geraete](./media/geraete.png) <span style="color:grey">  
+*Auswahl der zu überwachenden Geräte*</span>
+
+Oder komfortabler über den Button *Geräte suchen*: Es erscheint eine
+Auswahlliste (s. Grafik), wo alle bereits in der FB bekannten Geräte (inkl. IP +
+MAC) angezeigt und per Mausklick der Geräteliste zugefügt werden.
+
+### Anruflisten
+![Anruflisten](./media/anruflisten.png) <span style="color:grey">  
+*Auswahl der gewünschten Liste, deren Format sowie maximale Anzahl gelisteter Anrufe*</span>
+
+Aktivierung der gewünschten Liste; es stehen die Formate JSON und HTML zur
+Verfügung.
+
+Instanz
+-------
+
+Unter *Instanzen* des ioBrokers finden sich die installierte Instanz des
+Adapters. Links ist im Ampelsystem visualisiert, ob der Adapter aktiviert und
+verbunden ist.
+
+![Instanz](media/instanz.png) <span style="color:grey">  
+*Ideal: Instanzampel grün*</span>
+
+Platziert man den Mauszeiger auf ein Symbol, erhält man Detailinformationen.
+
+Objekte
+-------
+
+![Objekte](./media/ordnerliste_root.png)<span style="color:grey">  
+*Die Ordner im Root-Verzeichnis der Instanz*</span>
+
+Je nach den gewählten Einstellungen finden sich in der Objektliste mehrere
+Ordner, die die jeweiligen Informationen beinhalten. Nachfolgend eine kurze
+Beschreibung der wichtigsten Information.
+
+### callForwarding
+
+Hier kann für unbekannte oder im Telefonbuch enthaltene separat festgelegt
+werden, ob ein ankommender Anruf weitergeleitet (true) wird.
+
+### Calllists
+
+Hier können die Daten aus den verschiedenen Anruflisten eingesehen werden.
+
+Zur Verfügung gestellt werden jeweils die Datenpunkte
+
+-   Count = der Zähler der jeweiligen Auswahl (Reset durch Eingabe „0“)
+
+-   HTML bzw. JSON = Liste im jeweiligen Format
+
+Es gibt Anruflisten für alle (all), ankommende (inbound), verpasste (missed)
+sowie ausgehende (outbound) Gespräche.
+
+Unter htmlTemplate kann HTML-Ausgabe angepasst werden (z.B. um nicht erforderliche Informationen auszulassen).
+
+### Callmonitor
+
+Umfangreiche Informationen zu Anrufen in Realtime; es gibt Anruflisten für alle
+(all), ankommende (*inbound*), verpasste (*missed*), letzter Anruf (*last call*)
+sowie ausgehende (*outbound*) Gespräche.
+
+Folgende Datenpunkte stehen zur Verfügung:
+
+| **Datenpunkt** | **Definition**                                                |
+|----------------|---------------------------------------------------------------|
+| callee         | Angerufener                                                   |
+| caller         | Anrufer                                                       |
+| callerName     | Name des Anrufers (aus Telefonbuch)                           |
+| imageurlcallee | Bildadresse des Angerufenen (s. FAQ)                          |
+| imageurlcaller | Bildadresse des Anrufers (s. FAQ)                             |
+| json           | Bereitstellung als JSON-Table                                 |
+| Timestamp      | Zeitstempel                                                   |
+| *type*         | *Art des letzten Anrufs (connect, missed …), (nur last call)* |
+
+Zudem stehen hier noch folgende Datenpunkte zur Verfügung:
+
+| **Datenpunkt** | **Funktion**                                                                                                                                                                                                                                                                                                                         |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ringing        | True = Signal für eingehenden Anruf                                                                                                                                                                                                                                                                                                     |
+| toPauseState   | Hiermit kann bei Klingeln oder Abheben eine Aktion gestartet werden, die z.B. die Lautstärke eines Endgerätes absenkt und nach Beendigung des Gespräches den ursprünglichen Wert einstellt. Mögliche Werte: ring, connect, end (Global oder für Endgerät (12:Telefon, 21,22..: Handy-App, 40,41..:AB, je nach vorhandenen Endgeräten) |
+
+### Devices
+
+![Devices](media/device.png) <span style="color:grey">  
+*Ordner mit überwachten Geräten (=aktive Verbindungn in der FB)*</span>
+
+Alle in der Konfiguration hinzugefügten Geräte sind hier aufgelistet. Es können
+je Gerät folgende Datenpunkte eingesehen werden:
+
+So kann z.B. mit dem Datenpunkt „active“ per Skript auf Anwesenheit geprüft
+werden. Dabei wird das Einloggen eines Gerätes ins heimische Netz sofort
+erkannt, das Ausloggen (und damit die Abwesenheit) kann allerdings mehrere
+Minuten dauern.
 
 ### Phonebook
-- The phone book, if enabled, will be used to get the name of callers phone number.
-- Further there are three states to resolve a number or a name. If available you will also get the image URL of the contact.
-  e.g.: if you set the state phonebook.number all 3 states, name, number and image will be set to the found contact. Note, searches by     name will first compare the complete name, if not found, part of is used.
 
-### Call lists
-Output formats:
-- json
-- html
+Diese drei Datenpunkte repräsentieren Informationen zu einem Kontakt in dem in
+der FB angelegten Telefonbuch; Name oder Nummer sind als Suchfeld vorgesehen
+(z.B. für Einbindung in Visualisierung).
 
-Call lists are:
-- all calls
-- missed calls
-- inbound calls
-- outbound calls
+Die Abfrage eines in der FB abgelegten Bildes zu dem abgefragten funktioniert
+nicht stabil (s. FAQ).
 
-Call count:
-The call count can be set to 0. The next call will incement 1.
+### States
 
-The html output can be configured by a template
+Unter States finden sich diverse Steuerungsfunktionen, die an- oder abgeschaltet
+werden können (true/false):
 
-### command & commandResult state
-With the command state you can call every tr-064 command from this [documentation](https://avm.de/service/schnittstellen/).
-e.g.
-```javascript
-command = {
-    "service": "urn:dslforum-org:service:WLANConfiguration:1",
-    "action": "X_AVM-DE_SetWPSConfig",
-    "params": {
-        "NewX_AVM-DE_WPSMode": "pbc",
-        "NewX_AVM-DE_WPSClientPIN": ""
-    }
-};
-```
-The command state shoud be set to a JSON of the above Lines. So { ... } (without command = and line breaks)
-The callback of the call will set the commandResult state.
+-   Reboot FB
 
-<!--
-### Installation
-Execute the following command in the iobroker root directory (e.g. in /opt/iobroker)
-```
-npm install iobroker.tr-064
-```
--->
-### Enable call monitor
-To use the call monitor feature it must be first enabled in the AVM Fritz!Box.
-To enable the call monitor dial ```#96*5*```  and the TCP/IP Port 1012 will be opened. To close the port dial ```#96*4*```.
+-   WPS
 
-### pre release versions
-Prerelease versions are available at npm with the tag dev.
-You cann install them from the ioBroker root directory with:
-```
-npm install iobroker.tr-064@dev
-iobroker upload tr-064
-```
+-   WLAN/Gast-WLAN
 
-## Changelog
-### 0.4.18
-* (soef) IP and MAC-address added to device object
-### 0.4.17
-* (soef) readme updated
-### 0.4.16
-* (soef) terminating adapter, if init fails, so that the adapter will be restarted",
-### 0.4.15
-* (soef) callmonitor: new toPauseState with extension
-### 0.4.14
-* (soef) Errorhandling of connecting to FritzBox extended
-### 0.4.12
-* (soef) Errorhandling of deflections fixed
-### 0.4.11
-* (Apollon77) Update utils.js and usage, CI Testing and deps
-### 0.4.10 (2017-11-23)
-* (soef) readme changelog extended
-### 0.4.9
-* (soef) fix tag error in io-package.json
-### 0.4.8
-* (soef) fix posible timeout on getting WLAN-Infos
-### 0.4.6
-* (soef) fix posible exception in deflections
-### 0.4.5
-* (apollon77) update basic package-file testing
-### 0.4.4
-* (soef) states of call forwarding will now be updated in the configured interval
-### 0.4.3
-* (soef) Call forwarding now configurable
-### 0.4.2
-* (soef) fixed exception in deflections
-### 0.4.1
-* (soef) fix changing forwarding state
-### 0.4.0
-* (soef) enable/disable call forwarding added
-### 0.3.24
-* (soef) States from the callmonitor are renewed, even if no change
-### 0.3.23
-* (soef) node 0.12 removed from testing
-### 0.3.22
-* (soef) Enhance CI testing
-### 0.3.21
-* (soef) using soef 0.4.6 to fix adapter load
-### 0.3.20
-* (soef) adapter type changed to media
-### 0.3.19
-* (soef) error message removed
-### 0.3.18
-* (soef) clear caller/callee before next call
-### 0.3.17
-* (soef) Only active will be shone in configuration
-### 0.3.16
-* (soef) Some extensions in onMessage discovery
-### 0.3.15
-* (soef) toPauseState added. Values: ring, connect, end
-### 0.3.14
-* (soef) callee name added
-### 0.3.12 (2017-03-15)
-* (bluefox) phone book for repeater excluded
-* (bluefox) readme extended
-### 0.3.11 (2017-03-07)
-* (soef) external property adde to call list
-### 0.3.10 (2017-03-07)
-* (soef) Error message in configuration, if an older admin adapter is installed
-### 0.3.7 (2017-03-06)
-* (soef) Fixed imageurl for external phone book again. E.g. google
-### 0.3.6 (2017-03-06)
-* (soef) Fixed imageurl for external phone book. e.g. google
-### 0.3.5 (2017-03-06)
-* (soef) Json device list added
-### 0.3.3 (2017-03-01)
-* (soef) phonebook functions/states added
-### 0.3.1 (2017-02-28)
-* (soef) some bug fixes
-* (soef) releasing call lists
-### 0.3.0 (2017-02-25)
-* (bluefox) use new table for configuration dialog
+-   Wiederverbindung Internet
 
-### 0.2.0 (2016)
-* (soef) initial commit
+-   Anrufbeantworter
+
+    -   Datenpunkt **ab**: 1=anschalten, 0=abschalten
+
+    -   Datenpunkt **abIndex**: FB bietet bis zu 5 AB, hier ist die entsprechende Nr. des
+        anzusteuernden AB einzutragen (0-4; bezieht sich auf die letzte Zahl der
+        internen Rufnummer)
+
+-   ring: Eingabe einer internen oder externen Rufnummer lässt das entsprechende
+    Endgerät klingeln
+
+-   command/commandResult: für versierte Programmierer; zur Nutzung in Skripten
+    u.ä.
+
+FAQ
+===
+
+F: Warum werden die Bilder meiner Kontakte nicht angezeigt?
+
+A: Durch Verbesserung der Sicherheit wurde von AVM die Software der FB
+optimiert. Dadurch wird die Generierung eines Sicherheitsschlüssels erforderlich
+(SID). Dies ist noch nicht im Adapter implementiert.
+
+F: Einige JSON-Tabellen werden nicht korrekt dargestellt (Visualisierung VIS,
+JSON-Widget).
+
+A: Möglicherweise liegt die Ursache in einer inkorrekten Datenübermittlung.
+Entsprechender Issue wurde in Github bereits erstellt.
