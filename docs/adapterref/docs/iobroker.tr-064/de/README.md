@@ -196,7 +196,11 @@ Zudem stehen hier noch folgende Datenpunkte zur Verfügung:
 *Ordner mit überwachten Geräten (=aktive Verbindungn in der FB)*</span>
 
 Alle in der Konfiguration hinzugefügten Geräte sind hier aufgelistet. Es können
-je Gerät folgende Datenpunkte eingesehen werden:
+je Gerät u.a. folgende Datenpunkte eingesehen werden:
+
+-   Letzte IP oder MAC
+
+-   Letzte registrierte Aktivität/Inaktivität
 
 So kann z.B. mit dem Datenpunkt „active“ per Skript auf Anwesenheit geprüft
 werden. Dabei wird das Einloggen eines Gerätes ins heimische Netz sofort
