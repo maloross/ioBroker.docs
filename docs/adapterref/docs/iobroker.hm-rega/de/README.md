@@ -23,7 +23,7 @@ Funkkommunikation vereinfacht dabei das Nachrüsten. In Neubauten können
 Drahtbus-Komponenten eingesetzt werden.
 
 <a href="https://www.eq-3.de/produkte/homematic.html" title="Homepage des Herstellers eQ3">
-Quelle:</a>
+Quelle: AVM</a>
 
 Adapter Homematic ReGaHss
 -------------------------
