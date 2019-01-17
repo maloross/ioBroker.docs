@@ -113,7 +113,7 @@ und/oder MAC-Adresse eingegeben werden.
 
 Oder komfortabler über den Button *Geräte suchen*: Es erscheint eine
 Auswahlliste (s. Grafik), wo alle bereits in der FB bekannten Geräte (inkl. IP +
-MAC) angezeigt und per Mausklick der Geräteliste zugefügt werden.
+MAC) angezeigt werden. Man kann in der Liste scrollen und per Mausklick die gewünschten Geräte zur Überwachung hinzufügen.
 
 ### Anruflisten
 ![Anruflisten](./media/anruflisten.png) <span style="color:grey">  
