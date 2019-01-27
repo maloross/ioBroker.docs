@@ -19,7 +19,7 @@ am weitesten verbreiteten Router auf dem Markt.
 Es gibt mittlerweile Modelle für alle gängigen Internet-Anschlussarten: DSL-,
 Kabel-, Mobilfunk- und Glasfaserzugänge.
 
-Adapter Fritzbox
+Adapter TR-064
 ----------------
 
 Dieser Adapter liest Information aus der AVM Fritz!Box (kurz: FB) aus
@@ -147,7 +147,7 @@ Beschreibung der wichtigsten Information.
 ### callForwarding
 
 Hier kann für unbekannte oder im Telefonbuch enthaltene separat festgelegt
-werden, ob ein ankommender Anruf weitergeleitet (true) wird.
+werden, ob ein ankommender Anruf erfasst (true) wird.
 
 ### Calllists
 
@@ -181,7 +181,7 @@ Folgende Datenpunkte stehen zur Verfügung:
 | imageurlcaller | Bildadresse des Anrufers (s. FAQ)                             |
 | json           | Bereitstellung als JSON-Table                                 |
 | Timestamp      | Zeitstempel                                                   |
-| *type*         | *Art des letzten Anrufs (connect, missed …), (nur last call)* |
+| *type*         | *Art des letzten Anrufs (connect, missed …), (bezieht sich lediglich auf den letzen Anruf)* |
 
 Zudem stehen hier noch folgende Datenpunkte zur Verfügung:
 
