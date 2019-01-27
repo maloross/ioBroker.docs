@@ -2,7 +2,7 @@
 TR-064
 ========================================
 
-| Stand der Doku | 17.01.2019                                  |
+| Stand der Doku | 27.01.2019                                  |
 |----------------|---------------------------------------------|
 | Entwickler     | soef, bluefox                               |
 | Kategorie      | Hardware                                    |
@@ -53,7 +53,7 @@ an:
 
 > \#96\*4\* – Callmonitor ausschalten
 
-Als nächstes sollten in der FB unter "Heimnetz-Netzwerk-Netzwerkeinstellungen-Heimnetzfreigaben" beide Optionen aktiviert werden.
+Als nächstes sollten in der FB unter "Heimnetz-Netzwerk-Netzwerkeinstellungen-Heimnetzfreigaben" beide Optionen aktiviert werden (s. Grafik).
 
 ![Fritzbox-Konfiguration](./media/netzwerk.png)<span>  
 *Netzwerkeinstellung FB*</span>
@@ -81,7 +81,7 @@ Konfiguration
 
 **Fritzbox**
 
-Zugangsdaten FB
+Zugangsdaten FB (bspw. die Daten eines neu angelegten Benutzers)
 
 **Options**
 
